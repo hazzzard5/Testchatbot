@@ -71,8 +71,27 @@ const handleSubmit = async (e) => {
 
   const data = new FormData(form)
 
+  //   // Check if the prompt is in Pinecone
+  //const pineconeClient = new PineconeClient('YOUR_API_KEY');
+  //const pineconeIndex = 'YOUR_INDEX_NAME';
+  //const pineconeResults = await pineconeClient.query(pineconeIndex, data.get[prompt], { top_k: 1 });
+  
+  // if (pineconeResults.results.length > 0) {
+  //     // If the prompt is in Pinecone, use the corresponding response
+  //     const responseId = pineconeResults.results[0].ids[0];
+  //     const response = await pineconeClient.retrieve(pineconeIndex, responseId);
+  //     const parsedData = response.results[0];
+  
+  //     // Generate AI chat stripe with the response
+  //     chatContainer.innerHTML += chatStripe(true, parsedData, generateUniqueId());
+  //     return;
+  //   }
+  
+  // If the prompt is not in Pinecone, proceed with the existing fetch call
+  chatContainer.innerHTML += chatStripe(false, data.get('prompt')); 
+
   //generate user chat stripe
-  chatContainer.innerHTML += chatStripe(false, data.get('prompt'));
+  //chatContainer.innerHTML += chatStripe(false, data.get('prompt'));
 
   //reset form
   form.reset();
